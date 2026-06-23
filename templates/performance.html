@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Smart Performance Prediction</h2>
+<form method="GET">
+    <input type="text" name="search" placeholder="Search name" value="{{ search }}">
+    <select name="status">
+        <option value="">All Status</option>
+        <option value="Low" {% if status == 'Low' %}selected{% endif %}>Low Risk</option>
+        <option value="Medium" {% if status == 'Medium' %}selected{% endif %}>Medium Risk</option>
+        <option value="High" {% if status == 'High' %}selected{% endif %}>High Risk</option>
+    </select>
+    <select name="grade">
+        <option value="">All Grades</option>
+        {% for g in ['A+', 'A', 'B', 'C', 'D'] %}
+            <option value="{{ g }}" {% if grade == g %}selected{% endif %}>{{ g }}</option>
+        {% endfor %}
+    </select>
+    <select name="sort">
+        <option value="desc" {% if sort == 'desc' %}selected{% endif %}>High to Low</option>
+        <option value="asc" {% if sort == 'asc' %}selected{% endif %}>Low to High</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<form action="{{ url_for('performance.remove_selected_learners') }}" method="POST">
+<button class="danger" type="submit">Delete Selected</button>
+<table>
+    <tr>
+        <th>Select</th><th>ID</th><th>Name</th><th>Score</th><th>Grade</th><th>Status</th>
+        <th>Improvement Areas</th><th>Strengths</th><th>Action</th>
+    </tr>
+    {% for r in data %}
+    <tr>
+        <td><input type="checkbox" name="learner_ids" value="{{ r[0] }}"></td>
+        <td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td>
+        <td>{{ r[4] }}</td><td>{{ r[5] }}</td><td>{{ r[6] }}</td>
+        <td>
+            <a class="btn" href="{{ url_for('learner.learner_profile', learner_id=r[0]) }}">View</a>
+            <a class="btn danger" href="{{ url_for('learner.remove_learner', learner_id=r[0]) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Home Dashboard</h2>
+<div class="cards">
+    <div class="card"><h3>Best Score</h3><h2>{{ best_score }}</h2></div>
+    <div class="card"><h3>Average Score</h3><h2>{{ average_score }}</h2></div>
+    <div class="card"><h3>Low Risk</h3><h2>{{ low_risk }}</h2></div>
+    <div class="card"><h3>Medium Risk</h3><h2>{{ medium_risk }}</h2></div>
+    <div class="card"><h3>High Risk</h3><h2>{{ high_risk }}</h2></div>
+</div>
+<canvas id="topChart"></canvas>
+<script>
+    createBarChart("topChart", {{ names|safe }}, {{ scores|safe }}, "Top Performance Scores");
+</script>
+{% endblock %}

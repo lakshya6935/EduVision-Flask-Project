@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+}
+header {
+    background: #283593;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+nav {
+    background: white;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 2px 5px #ddd;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #283593;
+    font-weight: bold;
+}
+.container {
+    width: 90%;
+    margin: 25px auto;
+}
+.cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #ddd;
+    flex: 1;
+    min-width: 180px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background: #283593;
+    color: white;
+}
+input, select, button {
+    padding: 10px;
+    margin: 6px;
+}
+button, .btn {
+    background: #283593;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.danger {
+    background: #c62828;
+}
+.success {
+    background: #2e7d32;
+}
+.error {
+    background: #ffcdd2;
+    color: #b71c1c;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+canvas {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}

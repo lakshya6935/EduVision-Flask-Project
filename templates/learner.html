@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not info %}
+    <h3>Learner not found.</h3>
+{% else %}
+<h2>Learner Profile</h2>
+<div class="cards">
+    <div class="card"><b>Name:</b> {{ info[0] }}</div>
+    <div class="card"><b>Attendance:</b> {{ info[1] }}%</div>
+    <div class="card"><b>Daily Hours:</b> {{ info[2] }}</div>
+    <div class="card"><b>Score:</b> {{ info[3] }}</div>
+    <div class="card"><b>Grade:</b> {{ info[4] }}</div>
+    <div class="card"><b>Status:</b> {{ info[5] }}</div>
+</div>
+
+<h3>Course Marks</h3>
+<table>
+    <tr><th>Course</th><th>Total Marks</th></tr>
+    {% for c, s in rows %}
+        <tr><td>{{ c }}</td><td>{{ s }}</td></tr>
+    {% endfor %}
+</table>
+
+<canvas id="courseChart"></canvas>
+<script>
+    createBarChart("courseChart", {{ courses|safe }}, {{ scores|safe }}, "Course Scores");
+</script>
+
+<h3>Study Plan</h3>
+<ul>
+    {% for p in study_plan %}
+        <li><b>{{ p.get('day') }}</b>: {{ p.get('task') }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Recommendations</h3>
+<ul>
+    {% for s in recommendations %}
+        <li>{{ s }}</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{{ url_for('performance.performance_prediction') }}">Back</a>
+{% endif %}
+{% endblock %}

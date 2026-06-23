@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Analytics Dashboard</h2>
+<div class="cards">
+    <div class="card"><h3>Total Learners</h3><h2>{{ total_learners }}</h2></div>
+    <div class="card"><h3>Average Score</h3><h2>{{ average_score }}</h2></div>
+    <div class="card"><h3>Average Attendance</h3><h2>{{ average_attendance }}%</h2></div>
+    <div class="card"><h3>High Risk</h3><h2>{{ high_risk }}</h2></div>
+    <div class="card"><h3>Low Risk</h3><h2>{{ low_risk }}</h2></div>
+</div>
+
+<div class="cards">
+    <div class="card"><b>Top Learner:</b> {{ top_name }} ({{ top_score }})</div>
+    <div class="card"><b>Most Weak Course:</b> {{ most_weak_course }}</div>
+    <div class="card"><b>Best Course:</b> {{ best_course }}</div>
+    <div class="card"><b>Class Suggestion:</b> {{ class_advice }}</div>
+</div>
+
+<canvas id="gradeChart"></canvas>
+<script>
+    createPieChart("gradeChart", {{ grade_labels|safe }}, {{ grade_values|safe }});
+</script>
+
+<h3>Learner Records</h3>
+<table>
+    <tr>
+        <th>ID</th><th>Name</th><th>Attendance</th><th>Score</th><th>Grade</th><th>Status</th><th>Profile</th>
+    </tr>
+    {% for r in data %}
+    <tr>
+        <td>{{ r[0] }}</td>
+        <td>{{ r[1] }}</td>
+        <td>{{ r[2] }}</td>
+        <td>{{ r[3] }}</td>
+        <td>{{ r[4] }}</td>
+        <td>{{ r[5] }}</td>
+        <td><a class="btn" href="{{ url_for('learner.learner_profile', learner_id=r[0]) }}">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
