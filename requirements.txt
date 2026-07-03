@@ -1,6 +1,7 @@
 Flask==3.0.3
+gunicorn==22.0.0
 mysql-connector-python==9.0.0
-pandas==2.2.2
+numpy==1.26.4
+pandas==2.1.4
 openpyxl==3.1.5
-scikit-learn==1.5.1
-gunicorn
+scikit-learn==1.4.2
